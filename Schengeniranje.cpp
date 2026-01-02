@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <string.h>
+//Ovo sam promijenio na mobitelu
 
 typedef struct {
     char name[50];
