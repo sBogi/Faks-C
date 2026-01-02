@@ -22,7 +22,7 @@ void ispis(drzava d) {
         printf("%d ", d.susjediindex[i]);
     }
     printf("\n");
-    printf("exchange = %f\n", d.exchange);
+    printf("exchange = %.2f\n", d.exchange);
 }
 
 void readcountries(drzava drz[100], FILE* fp, int *brdr) {
@@ -61,7 +61,7 @@ void readexchanges(drzava drz[100], FILE* fp, int* brdr) {
     char buffer1[255];
     char buffer2[255];
     int k = 0;
-    float temp = 0;
+    double temp = 0;
     printf("usao u exchanges\n");
     while (fgets(buffer1, sizeof(buffer1), fp) != NULL)
     {
@@ -72,7 +72,7 @@ void readexchanges(drzava drz[100], FILE* fp, int* brdr) {
         {
             if (!strcmp(drz[i].name, buffer1))
             {   
-                sscanf(buffer2, "%f", &temp);
+                sscanf(buffer2, "%lf", &temp);
 
                 drz[i].exchange = temp;
             }
