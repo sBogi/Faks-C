@@ -1,0 +1,94 @@
+Albania
+Greece,North Macedonia,Serbia,Montenegro
+Andorra
+France,Spain
+Austria
+Czech Republic,Germany,Hungary,Italy,Liechtenstein,Slovakia,Slovenia,Switzerland
+Belarus
+Latvia,Lithuania,Poland,Russia,Ukraine
+Belgium
+Germany,Luxembourg,Netherlands,France
+Bosnia and Herzegovina
+Croatia,Montenegro,Serbia
+Bulgaria
+Greece,North Macedonia,Romania,Serbia,Turkey
+Croatia
+Bosnia and Herzegovina,Hungary,Montenegro,Serbia,Slovenia
+Cyprus
+Syria
+Czech Republic
+Germany,Poland,Slovakia,Austria,Hungary
+Denmark
+Germany
+Estonia
+Latvia,Russia
+Finland
+Norway,Sweden
+France
+Belgium,Germany,Italy,Luxembourg,Monaco,Spain,Switzerland
+Germany
+Austria,Belgium,Czech Republic,Denmark,France,Luxembourg,Netherlands,Poland,Switzerland
+Greece
+Albania,Bulgaria,North Macedonia,Turkey
+Hungary
+Austria,Croatia,Czech Republic,Romania,Serbia,Slovakia,Slovenia
+Iceland
+Norway
+Ireland
+United Kingdom
+Italy
+Austria,France,Slovenia,Switzerland,Vatican City,San Marino
+Kosovo
+Montenegro,Serbia,Albania,North Macedonia
+Vatican City
+Italy
+Latvia
+Belarus,Estonia,Lithuania,Russia
+Liechtenstein
+Austria,Switzerland
+Lithuania
+Belarus,Latvia,Poland,Russia
+Luxembourg
+Belgium,Germany,France
+Malta
+Libya,Tunisia
+Moldova
+Romania,Ukraine
+Monaco
+France
+Montenegro
+Bosnia and Herzegovina,Croatia,Kosovo,Serbia,Albania
+Netherlands
+Belgium,Germany
+North Macedonia
+Albania,Bulgaria,Greece,Kosovo,Serbia
+Norway
+Finland,Sweden,Russia
+Poland
+Belarus,Czech Republic,Germany,Lithuania,Russia,Slovakia,Ukraine
+Portugal
+Spain
+Romania
+Bulgaria,Hungary,Moldova,Serbia,Ukraine
+Russia
+Belarus,Estonia,Finland,Latvia,Lithuania,Norway,Poland,Ukraine
+San Marino
+Italy
+Serbia
+Bosnia and Herzegovina,Bulgaria,Croatia,Hungary,Montenegro,North Macedonia,Romania,Kosovo
+Slovakia
+Czech Republic,Hungary,Poland,Ukraine,Austria
+Slovenia
+Austria,Croatia,Hungary,Italy
+Spain
+Andorra,France,Portugal
+Sweden
+Finland,Norway
+Switzerland
+Austria,Germany,Italy,Liechtenstein,France
+Ukraine
+Belarus,Hungary,Moldova,Poland,Romania,Russia,Slovakia
+United Kingdom
+Ireland
+Turkey
+Bulgaria,Greece
