@@ -1,3 +1,4 @@
 ﻿  Schengeniranje.cpp
-C:\Users\Faks\Desktop\Programiranje\Schengeniranje\Schengeniranje.cpp(143,9): warning C4101: 'rezultat': unreferenced local variable
+C:\Users\Faks\Desktop\Programiranje\Schengeniranje\Schengeniranje.cpp(75,35): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Faks\Desktop\Programiranje\Schengeniranje\Schengeniranje.cpp(116,9): warning C4101: 'pare': unreferenced local variable
   Schengeniranje.vcxproj -> C:\Users\Faks\Desktop\Programiranje\Schengeniranje\x64\Debug\Schengeniranje.exe

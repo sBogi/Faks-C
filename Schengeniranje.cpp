@@ -62,10 +62,8 @@ void readexchanges(drzava drz[100], FILE* fp, int* brdr) {
     char buffer2[255];
     int k = 0;
     double temp = 0;
-    printf("usao u exchanges\n");
     while (fgets(buffer1, sizeof(buffer1), fp) != NULL)
     {
-        printf("While\n");
         buffer1[strcspn(buffer1, "\n")] = 0;
         fgets(buffer2, sizeof(buffer2), fp);
         for (int i = 0; i < *brdr; i++)
@@ -94,8 +92,19 @@ void dodajindexe(drzava *d, drzava drz[100],int n) {
     }
 }
 
-void putovanje(drzava drzave[100], int brdr,int start, int end,int *rezultat) {
-    printf("usao\n");
+int decode(char ime[50], drzava drz[100],int brdr) {
+    for (int i = 0; i < brdr; i++)
+    {
+        if (!(strcmp(ime, drz[i].name)))
+        {
+            return drz[i].index;
+        }
+    }
+    return -1;
+}
+
+void putovanje(drzava drzave[100], int brdr,int start, int end,int *rezultat, int novci,int troškovi[10], int brtroškova) {
+
     int nprovjereni = 1;
     int nnaprovjeri = 0;
     int nadzen = 0;
@@ -104,9 +113,11 @@ void putovanje(drzava drzave[100], int brdr,int start, int end,int *rezultat) {
     provjereni[0] = start;
     int predhodni[1000];
     predhodni[0] = 0;
+    int pare[1000];
+    int ntroskovi = 0;
+    pare[0] = novci;
     while (!nadzen) 
     {   
-        printf("usao u while\n");
         korak = nprovjereni - nnaprovjeri;
         for (int i = 0; i <= korak; i++)
         {
@@ -114,6 +125,7 @@ void putovanje(drzava drzave[100], int brdr,int start, int end,int *rezultat) {
             {
                 provjereni[nprovjereni] = drzave[provjereni[nnaprovjeri]].susjediindex[j];
                 predhodni[nprovjereni] = nnaprovjeri;
+                pare[nprovjereni] = pare[nnaprovjeri]; //tu treba dodati troškovin - teèaj od drzave[provjereni[nnaprovjeri]].susjediindex[j] 
                 nprovjereni++;
             }
             nnaprovjeri++;
@@ -127,11 +139,12 @@ void putovanje(drzava drzave[100], int brdr,int start, int end,int *rezultat) {
             }
                 
         }
+        ntroskovi++;
        
     }
     for (int i = 0; i < nprovjereni; i++)
     {
-        printf("%d    %d    %d\n", i, provjereni[i], predhodni[i]);
+        printf("%d    %d    %d novci: %d\n", i, provjereni[i], predhodni[i], pare[i]);
     }
 }
 
@@ -142,12 +155,29 @@ int main() {
     drzava drzave[100] = { 0 };
     int brdr=0;
     int rezultat[100];
+    int novci;
+    int troskovi[10];
+    int brtroskova;
+    char pocetakime[50];
+    char krajime[50];
+    int pocetak;
+    int kraj;
+    scanf("%s[^\n]&*c", &pocetakime);
+    scanf("%s[^\n]&*c", &krajime);
+    scanf("%d", &novci);
+    scanf("%d", &brtroskova);
+    for (int i = 0; i < brtroskova; i++)
+    {
+        scanf("%d", &troskovi[i]);
+    }
     FILE* countries = fopen("countries.txt", "r");
     readcountries(drzave, countries, &brdr);
     fclose(countries);
     FILE* exchange = fopen("exchange.txt", "r");
     readexchanges(drzave, exchange, &brdr);
     fclose(exchange);
+    pocetak = decode(pocetakime, drzave, brdr);
+    kraj = decode(krajime, drzave, brdr);
     for (int i = 0; i < brdr; i++)
     {    
         dodajindexe(&drzave[i], drzave, brdr);
@@ -157,7 +187,7 @@ int main() {
     {
         ispis(drzave[i]);
     }
-    //putovanje(drzave, brdr, 7, 46, rezultat);
+    putovanje(drzave, brdr, pocetak, kraj, rezultat, novci, troskovi, brtroskova);
 
     return 0;
 }
