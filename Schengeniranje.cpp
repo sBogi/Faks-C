@@ -134,18 +134,17 @@ void putovanje(drzava drzave[100], int brdr,int start, int end,int *rezultat, in
     pare[0] = novci;
     int indextrazenog;
     int brgranica=0;
+    int a = 0;
     while (!nadzen) 
     {   
-    	brgranica++;
-        korak = nprovjereni - nnaprovjeri;
-        for (int i = 0; i <= korak; i++)
+        korak = nprovjereni - nnaprovjeri;;
+        for (int i = 0; i < korak; i++)
         {
             for (int j = 0; j < drzave[provjereni[nnaprovjeri]].brojsusjeda; j++)
             {
                 provjereni[nprovjereni] = drzave[provjereni[nnaprovjeri]].susjediindex[j];
                 predhodni[nprovjereni] = nnaprovjeri;
-                pare[nprovjereni] = pare[nnaprovjeri]- troskovi[ntroskovi]/vratitecaj(drzave,drzave[provjereni[nnaprovjeri]].susjediindex[j]); //tu treba dodati tro�kovin - te�aj od drzave[provjereni[nnaprovjeri]].susjediindex[j] 
-//trenutno novaca - troskovi/tecajem
+                pare[nprovjereni] = pare[nnaprovjeri] - troskovi[ntroskovi]/vratitecaj(drzave,drzave[provjereni[nnaprovjeri]].susjediindex[j]); 
                 nprovjereni++;
             }
             nnaprovjeri++;
@@ -155,7 +154,6 @@ void putovanje(drzava drzave[100], int brdr,int start, int end,int *rezultat, in
             if (provjereni[i] == end) 
             {
                 nadzen++;
-                printf("%d\n",i);
             }
                 
         }
@@ -163,23 +161,16 @@ void putovanje(drzava drzave[100], int brdr,int start, int end,int *rezultat, in
        
     }
     indextrazenog=maxinput(provjereni,pare,nprovjereni,end);
-    printf("dobar index je %d\n",indextrazenog);
     int trenutn=indextrazenog;
-    printf("%d\n",brgranica);
     *ostatak = pare[indextrazenog];
-    *brdrzava=brgranica;
-    //for(int i =brgranica+1;i>=0;i--){
-    //	rezultat[i]=provjereni[trenutn];
-    //	trenutn=predhodni[trenutn];}
-	int i =0;
-    while(prethodni[brgranica]!=-1){
+    while(predhodni[trenutn]!=-1){
     	
-    	rezultat[i]=
+        rezultat[brgranica] = provjereni[trenutn];
+        trenutn = predhodni[trenutn];
+        brgranica++;
     }
-    for (int i = 0; i < nprovjereni; i++)
-    {
-        printf("%d    %d    %d novci: %.2f\n", i, provjereni[i], predhodni[i], pare[i]);
-    }
+    rezultat[brgranica] = provjereni[trenutn];
+    *brdrzava = brgranica;
 }
 
 
@@ -221,17 +212,12 @@ int main() {
     {    
         dodajindexe(&drzave[i], drzave, brdr);
     }
-
-    for (int i = 0; i < brdr; i++)
-    {
-        ispis(drzave[i]);
-    }
     putovanje(drzave, brdr, pocetak, kraj, rezultat, novci, troskovi, brtroskova, &brgranica, &ostatakpara);
-	for(int i=0;i<10;i++){
-		printf("%s -> ",drzave[rezultat[i]].name);
-	}
-	printf("%s\n",drzave[rezultat[brgranica]].name);
-	printf("%.2f\n",ostatakpara);
+    printf("%s",drzave[rezultat[brgranica]].name);
+    for (int i = brgranica-1; i >= 0; i--) {
+        printf(" -> %s", drzave[rezultat[i]].name);
+    }
+	printf("\n%.2f\n",ostatakpara);
 	
     return 0;
 }

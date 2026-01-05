@@ -1,4 +1,5 @@
 ﻿  Schengeniranje.cpp
 C:\Users\Faks\Desktop\Programiranje\Schengeniranje\Schengeniranje.cpp(75,35): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Faks\Desktop\Programiranje\Schengeniranje\Schengeniranje.cpp(116,9): warning C4101: 'pare': unreferenced local variable
+C:\Users\Faks\Desktop\Programiranje\Schengeniranje\Schengeniranje.cpp(116,26): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Faks\Desktop\Programiranje\Schengeniranje\Schengeniranje.cpp(134,15): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   Schengeniranje.vcxproj -> C:\Users\Faks\Desktop\Programiranje\Schengeniranje\x64\Debug\Schengeniranje.exe
