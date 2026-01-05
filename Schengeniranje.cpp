@@ -103,7 +103,23 @@ int decode(char ime[50], drzava drz[100],int brdr) {
     return -1;
 }
 
-void putovanje(drzava drzave[100], int brdr,int start, int end,int *rezultat, int novci,int troškovi[10], int brtroškova) {
+float vratitecaj(drzava drz[100],int index){
+	return drz[index].exchange;	
+}
+
+
+int maxinput(int *listadrzava,float *listanovaca, int n,int trazeni){
+	int maxnovci=-1000;
+	int index;
+	for(int i=0;i < n;i++){
+		if(listadrzava[i]==trazeni && maxnovci<listanovaca[i]){
+			maxnovci=listanovaca[i];
+			index=i;
+		}
+	}
+	return index;
+}
+void putovanje(drzava drzave[100], int brdr,int start, int end,int *rezultat, int novci,int troskovi[10], int brtrokova,int *brdrzava,float *ostatak) {
 
     int nprovjereni = 1;
     int nnaprovjeri = 0;
@@ -112,12 +128,15 @@ void putovanje(drzava drzave[100], int brdr,int start, int end,int *rezultat, in
     int provjereni[1000];
     provjereni[0] = start;
     int predhodni[1000];
-    predhodni[0] = 0;
-    int pare[1000];
+    predhodni[0] = -1;
+    float  pare[1000];
     int ntroskovi = 0;
     pare[0] = novci;
+    int indextrazenog;
+    int brgranica=0;
     while (!nadzen) 
     {   
+    	brgranica++;
         korak = nprovjereni - nnaprovjeri;
         for (int i = 0; i <= korak; i++)
         {
@@ -125,7 +144,8 @@ void putovanje(drzava drzave[100], int brdr,int start, int end,int *rezultat, in
             {
                 provjereni[nprovjereni] = drzave[provjereni[nnaprovjeri]].susjediindex[j];
                 predhodni[nprovjereni] = nnaprovjeri;
-                pare[nprovjereni] = pare[nnaprovjeri]; //tu treba dodati troškovin - teèaj od drzave[provjereni[nnaprovjeri]].susjediindex[j] 
+                pare[nprovjereni] = pare[nnaprovjeri]- troskovi[ntroskovi]/vratitecaj(drzave,drzave[provjereni[nnaprovjeri]].susjediindex[j]); //tu treba dodati troï¿½kovin - teï¿½aj od drzave[provjereni[nnaprovjeri]].susjediindex[j] 
+//trenutno novaca - troskovi/tecajem
                 nprovjereni++;
             }
             nnaprovjeri++;
@@ -142,9 +162,23 @@ void putovanje(drzava drzave[100], int brdr,int start, int end,int *rezultat, in
         ntroskovi++;
        
     }
+    indextrazenog=maxinput(provjereni,pare,nprovjereni,end);
+    printf("dobar index je %d\n",indextrazenog);
+    int trenutn=indextrazenog;
+    printf("%d\n",brgranica);
+    *ostatak = pare[indextrazenog];
+    *brdrzava=brgranica;
+    //for(int i =brgranica+1;i>=0;i--){
+    //	rezultat[i]=provjereni[trenutn];
+    //	trenutn=predhodni[trenutn];}
+	int i =0;
+    while(prethodni[brgranica]!=-1){
+    	
+    	rezultat[i]=
+    }
     for (int i = 0; i < nprovjereni; i++)
     {
-        printf("%d    %d    %d novci: %d\n", i, provjereni[i], predhodni[i], pare[i]);
+        printf("%d    %d    %d novci: %.2f\n", i, provjereni[i], predhodni[i], pare[i]);
     }
 }
 
@@ -154,18 +188,23 @@ void putovanje(drzava drzave[100], int brdr,int start, int end,int *rezultat, in
 int main() {
     drzava drzave[100] = { 0 };
     int brdr=0;
-    int rezultat[100];
+    int rezultat[10];
     int novci;
-    int troskovi[10];
+    int troskovi[10]={0};
     int brtroskova;
     char pocetakime[50];
     char krajime[50];
     int pocetak;
     int kraj;
-    scanf("%s[^\n]&*c", &pocetakime);
-    scanf("%s[^\n]&*c", &krajime);
+    int brgranica;
+    float ostatakpara;
+    scanf("%s[^\n]&*c", pocetakime);
+    scanf("%s[^\n]&*c", krajime);
     scanf("%d", &novci);
     scanf("%d", &brtroskova);
+    for(int i =0;i<10;i++){
+    	rezultat[i]=0;
+    }
     for (int i = 0; i < brtroskova; i++)
     {
         scanf("%d", &troskovi[i]);
@@ -187,7 +226,12 @@ int main() {
     {
         ispis(drzave[i]);
     }
-    putovanje(drzave, brdr, pocetak, kraj, rezultat, novci, troskovi, brtroskova);
-
+    putovanje(drzave, brdr, pocetak, kraj, rezultat, novci, troskovi, brtroskova, &brgranica, &ostatakpara);
+	for(int i=0;i<10;i++){
+		printf("%s -> ",drzave[rezultat[i]].name);
+	}
+	printf("%s\n",drzave[rezultat[brgranica]].name);
+	printf("%.2f\n",ostatakpara);
+	
     return 0;
 }
